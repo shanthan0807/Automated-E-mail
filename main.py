@@ -5,8 +5,8 @@ from send_email import send_email  # local python module
 
 
 # Public GoogleSheets url - not secure!
-SHEET_ID = "<GOOGLE_SHEET_ID>"  # !!! CHANGE ME !!!
-SHEET_NAME = "<SHEET_NAME>"  # !!! CHANGE ME !!!
+SHEET_ID = "<GOOGLE_SHEET_ID>"
+SHEET_NAME = "<SHEET_NAME>"
 URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/gviz/tq?tqx=out:csv&sheet={SHEET_NAME}"
 
 
@@ -22,7 +22,7 @@ def query_data_and_send_emails(df):
     for _, row in df.iterrows():
         if (present >= row["reminder_date"].date()) and (row["has_paid"] == "no"):
             send_email(
-                subject=f'[Coding Is Fun] Invoice: {row["invoice_no"]}',
+                subject=f'[Remainder] Invoice: {row["invoice_no"]}',
                 receiver_email=row["email"],
                 name=row["name"],
                 due_date=row["due_date"].strftime("%d, %b %Y"),  # example: 11, Aug 2022
